@@ -60,7 +60,7 @@ class TranslatorEngine {
 const engine = new TranslatorEngine(lex);
 const inp = document.getElementById("en-input");
 const outp = document.getElementById("translation");
-
-inp.addEventListener("input", () => {
+const tbtn = document.getElementById("translate-btn");
+tbtn.onclick = () => {
     outp.value = engine.translate(inp.value);
-});
+}
