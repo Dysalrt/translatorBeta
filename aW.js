@@ -16,4 +16,7 @@ const db = getFirestore(app);
 const code1 = await getDoc(doc(db, "code", "code"));
 const code2 = code1.data() || {};
 const code = code2["code"];
-
+const codeinp = document.getElementById("code-inp");
+if (codeinp.value == await getDoc(doc(db, "code", "code")).data()["code"]){
+    pass;
+}
