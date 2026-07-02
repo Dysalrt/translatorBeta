@@ -3,21 +3,35 @@
    Ключ — английская лемма (базовая форма). pos используется debug-панелью
    и для отдельных генераторов (noun / pronoun / verb / modal / adjective).
    ========================================================================= */
+// 1. Declare them as empty at the top level
 let DICTIONARY = {};
+let CONFIG = {};
 
-async function loadDictionary() {
-    try {
-        const response = await fetch('lex.json');
-        DICTIONARY = await response.json();
-        renderDict();
-        runTranslate();
-    } catch (err) {
-        console.error("Failed to load dictionary:", err);
-    }
+let ARTICLES, PREPOSITIONS, NEGATIONS, FUTURE_MARKERS;
+
+// 2. The loader function updates these global variables
+async function initializeApp() {
+    const [dictRes, confRes] = await Promise.all([
+        fetch('lex.json'),
+        fetch('config.json')
+    ]);
+
+    DICTIONARY = await dictRes.json();
+    CONFIG = await confRes.json();
+
+    // 3. Assign the values to the top-level variables
+    ARTICLES = new Set(CONFIG.articles);
+    PREPOSITIONS = new Set(CONFIG.prepositions);
+    NEGATIONS = new Set(CONFIG.negations);
+    FUTURE_MARKERS = new Set(CONFIG.futureMarkers);
+    
+    // Now these variables are accessible to translateClauseOrPhrase,
+    // generateVerb, and every other function in your file.
+    runTranslate();
 }
 
-// Call this once at the start of your script
-loadDictionary();
+// 4. Start the engine
+initializeApp();
 
 /* Закрытый список спряжённых английских форм для глаголов, которые есть
    в словаре. Так как словарь маленький и фиксированный, надёжнее вручную
