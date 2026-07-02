@@ -13,9 +13,9 @@
 <div class="wrap">
 
   <header>
-    <div class="eyebrow">Конструктор языка · рабочий прототип</div>
+    <div class="eyebrow">Language translator · prototype</div>
     <h1>Vus <em>en → vus</em></h1>
-    <p>Переводчик строит структуру предложения (подлежащее, время, аспект, вопрос) и только потом собирает слова по твоей грамматике — не переводит по словам.</p>
+    <p>The translator builds the structure of a sentence (verbs, tenses, aspects, questions) and only then it translates acording to the grammar and not just word by word.</p>
   </header>
 
   <div class="panes">
@@ -25,53 +25,53 @@
     </div>
     <div class="pane">
       <div class="pane-label"><span>Vus</span><span class="tag">constructed</span></div>
-      <div id="outputArea"><span class="placeholder">Перевод появится здесь</span></div>
+      <div id="outputArea"><span class="placeholder">Here you'll get your translation</span></div>
     </div>
   </div>
 
   <div class="toolbar">
-    <button id="translateBtn">Перевести →</button>
-    <button class="ghost-btn" id="toggleDebug">Разбор грамматики</button>
-    <button class="ghost-btn" id="toggleDict">Словарь (38 слов)</button>
+    <button id="translateBtn">Translate →</button>
+    <button class="ghost-btn" id="toggleDebug">Grammmar analyse</button>
+    <button class="ghost-btn" id="toggleDict">Lexicon (38 слов)</button>
   </div>
 
   <div id="debugPanel">
-    <h3>Грамматический разбор</h3>
+    <h3>ГGrammar analyse</h3>
     <div id="debugContent"></div>
   </div>
 
   <div id="dictPanel">
-    <h3>Словарь</h3>
+    <h3>Lexicon</h3>
     <div class="dict-form">
       <input id="dictEn" placeholder="английское слово">
       <input id="dictRoot" placeholder="корень на Vus">
       <select id="dictPos">
-        <option value="noun">существительное</option>
-        <option value="verb">глагол</option>
-        <option value="pronoun">местоимение</option>
-        <option value="adjective">прилагательное</option>
-        <option value="modal">модальный глагол</option>
-        <option value="conjunction">союз</option>
-        <option value="question">вопр. слово</option>
-        <option value="interjection">междометие</option>
+        <option value="noun">noun</option>
+        <option value="verb">verb</option>
+        <option value="pronoun">pronoun</option>
+        <option value="adjective">adjective</option>
+        <option value="modal">modal</option>
+        <option value="conjunction">conjunction</option>
+        <option value="question">question</option>
+        <option value="interjection">interjection</option>
       </select>
-      <button id="dictAdd">Добавить</button>
+      <button id="dictAdd">Add a word</button>
     </div>
     <div class="dict-scroll">
       <table class="dict-table" id="dictTable">
-        <thead><tr><th>English</th><th>Root</th><th class="pos">Тип</th><th></th></tr></thead>
+        <thead><tr><th>English</th><th>Root</th><th class="pos">Type</th><th></th></tr></thead>
         <tbody id="dictBody"></tbody>
       </table>
     </div>
     <div class="dict-io">
-      <button class="ghost-btn" id="dictExport">Экспорт JSON</button>
-      <button class="ghost-btn" id="dictImportBtn">Импорт JSON</button>
+      <button class="ghost-btn" id="dictExport">Export JSON</button>
+      <button class="ghost-btn" id="dictImportBtn">Import JSON</button>
       <input type="file" id="dictImportFile" accept="application/json" style="display:none">
     </div>
   </div>
 
   <div class="examples">
-    <div class="examples-label">Примеры для проверки</div>
+    <div class="examples-label">Examples</div>
     <span class="ex-chip">She is learning.</span>
     <span class="ex-chip">He was learning.</span>
     <span class="ex-chip">Do you want pizza?</span>
@@ -83,8 +83,8 @@
   </div>
 
   <footer>
-    <b>Как это устроено:</b> текст делится на предложения и слова; т.к. словарь пока небольшой и закрытый, распознавание форм глаголов/местоимений/существительных сделано по спискам, а не общим английским тэггером — так надёжнее для маленького фиксированного набора слов. Дальше строится структура предложения (подлежащее/сказуемое/дополнение, время, аспект, вопрос, отрицание), и только потом отдельный генератор строит словоформы по твоим суффиксальным правилам и собирает их в нужном порядке.<br><br>
-    <b>Пока не поддерживается:</b> предлоги (отложены сознательно), сложные придаточные предложения, любые английские слова вне словаря — они попадут в «Missing words», а прилагательные/прочие части речи можно добавлять через панель словаря.
+    <b>How does it work:</b> the text is devided into sentences and words; because the lexicon is now small and closed, detection of verbs/pronouns/nouns form is done by lists, and not with just one english tag — it is safe and effective for small amount of words. Then the sentece's structure is being built (predicate/subject/object tense, aspect, negation, question) and only then separated generator builds words form using suffixal rules and puts them in the right order.<br><br>
+    <b>Not available:</b> prepositions, any english words that are not in lexicon — they will get into a category «Missing words».
   </footer>
 
 </div>
