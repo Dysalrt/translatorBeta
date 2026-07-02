@@ -1,0 +1,17 @@
+{
+  "verbForms": {
+    "be": { "present": ["am", "is", "are", "be"], "past": ["was", "were"], "gerund": "being" },
+    "do": { "present": ["do", "does"], "past": ["did"], "gerund": "doing" },
+    "learn": { "present": ["learn", "learns"], "past": ["learned", "learnt"], "gerund": "learning" }
+  },
+  "modalForms": {
+    "can": { "present": "can", "past": "could" },
+    "must": { "present": "must", "past": "must" }
+  },
+  "articles": ["a", "an", "the"],
+  "prepositions": ["in", "on", "at", "for", "from", "of", "with", "by", "into", "onto", "near", "under", "over", "about", "through", "between", "to"],
+  "possessiveDet": { "my": "i", "your": "you", "his": "he", "her": "she", "its": "it", "our": "we", "their": "they" },
+  "questionWords": ["what", "who", "how", "why", "when"],
+  "negations": ["not", "n't", "nt"],
+  "futureMarkers": ["will", "shall"]
+}
