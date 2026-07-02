@@ -7,7 +7,7 @@ let DICTIONARY = {};
 
 async function loadDictionary() {
     try {
-        const response = await fetch('lexicon.json');
+        const response = await fetch('lex.json');
         DICTIONARY = await response.json();
         renderDict();
         runTranslate();
