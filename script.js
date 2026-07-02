@@ -3,54 +3,21 @@
    Ключ — английская лемма (базовая форма). pos используется debug-панелью
    и для отдельных генераторов (noun / pronoun / verb / modal / adjective).
    ========================================================================= */
-let DICTIONARY = {
-  // местоимения
-  'i':      { root:'Vi',  pos:'pronoun' },
-  'you':    { root:'Vus', pos:'pronoun' },
-  'he':     { root:'Il',  pos:'pronoun' },
-  'she':    { root:'El',  pos:'pronoun' },
-  'it':     { root:'De',  pos:'pronoun' },
-  'we':     { root:'Nus', pos:'pronoun' },
-  'they':   { root:'Vos', pos:'pronoun' },
-  // существительные
-  'house':     { root:'vous',  pos:'noun' },
-  'cafe':      { root:'cafe',  pos:'noun' },
-  'cafeteria': { root:'cafe',  pos:'noun' },
-  'pizza':     { root:'pizza', pos:'noun' },
-  'morning':   { root:'dar',   pos:'noun' },
-  'daytime':   { root:'dur',   pos:'noun' },
-  'evening':   { root:'nev',   pos:'noun' },
-  'night':     { root:'nuv',   pos:'noun' },
-  'day':       { root:'qan',   pos:'noun' },
-  'week':      { root:'teqen', pos:'noun' },
-  'teacher':   { root:'pare',  pos:'noun' },
-  'father':    { root:'pate',  pos:'noun' },
-  'mother':    { root:'mate',  pos:'noun' },
-  // союзы
-  'and': { root:'it', pos:'conjunction' },
-  'or':  { root:'pū', pos:'conjunction' },
-  'but': { root:'cū', pos:'conjunction' },
-  // вопросительные слова
-  'what': { root:'qu',   pos:'question' },
-  'who':  { root:'qa',   pos:'question' },
-  'how':  { root:'qo',   pos:'question' },
-  'why':  { root:'qi',   pos:'question' },
-  'when': { root:'qanq', pos:'question' },
-  // глаголы (леммы; спряжённые формы распознаются VERB_FORMS ниже)
-  'be':    { root:'e',   pos:'verb' },
-  'do':    { root:'an',  pos:'verb' },
-  'learn': { root:'oca', pos:'verb' },
-  'study': { root:'oca', pos:'verb' },
-  'have':  { root:'jū',  pos:'verb' },
-  'can':   { root:'col', pos:'modal' },
-  'want':  { root:'dul', pos:'verb' },   // синтаксически ведёт себя как модальный: want + инфинитив
-  'must':  { root:'den', pos:'modal' },
-  // междометия
-  'hello':   { root:'Qite',  pos:'interjection' },
-  'hi':      { root:'Venite',pos:'interjection' },
-  'bye':     { root:'qami',  pos:'interjection' },
-  'goodbye': { root:'vinita',pos:'interjection' },
-};
+let DICTIONARY = {};
+
+async function loadDictionary() {
+    try {
+        const response = await fetch('lexicon.json');
+        DICTIONARY = await response.json();
+        renderDict();
+        runTranslate();
+    } catch (err) {
+        console.error("Failed to load dictionary:", err);
+    }
+}
+
+// Call this once at the start of your script
+loadDictionary();
 
 /* Закрытый список спряжённых английских форм для глаголов, которые есть
    в словаре. Так как словарь маленький и фиксированный, надёжнее вручную
